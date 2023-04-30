@@ -1,0 +1,253 @@
+@startuml
+set namespaceSeparator ::
+
+class "go::assistant::assistant_methods.dart::AssistantMethods" {
+  {static} +Future<String> searchAddressForGeographicCoOrdinates()
+  {static} +void readCurrentOnlineUserInfo()
+  {static} +Future<DirectionDetailsInfo?> obtainOriginToDestinationDirectionDetails()
+}
+
+class "go::assistant::request_assistant.dart::RequestAssistant" {
+  {static} +Future<dynamic> receiveRequest()
+}
+
+class "go::authentication::car_info_screen.dart::CarInfoScreen" {
+  +_CarInfoScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::authentication::car_info_screen.dart::CarInfoScreen"
+
+class "go::authentication::car_info_screen.dart::_CarInfoScreenState" {
+  +TextEditingController carModelTextEditingController
+  +TextEditingController carNumberTextEditingController
+  +TextEditingController carColorTextEditingController
+  +List<String> carTypesList
+  +String? selectedCarType
+  +dynamic saveCarInfo()
+  +Widget build()
+}
+
+"go::authentication::car_info_screen.dart::_CarInfoScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "go::authentication::car_info_screen.dart::_CarInfoScreenState"
+
+class "go::authentication::login_screen.dart::LoginScreen" {
+  +_LoginScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::authentication::login_screen.dart::LoginScreen"
+
+class "go::authentication::login_screen.dart::_LoginScreenState" {
+  +TextEditingController emailTextEditingController
+  +TextEditingController passwordTextEditingController
+  +dynamic validateForm()
+  +dynamic loginDriverNow()
+  +Widget build()
+}
+
+"go::authentication::login_screen.dart::_LoginScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "go::authentication::login_screen.dart::_LoginScreenState"
+
+class "go::authentication::signup_screen.dart::SignUpScreen" {
+  +_SignUpScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::authentication::signup_screen.dart::SignUpScreen"
+
+class "go::authentication::signup_screen.dart::_SignUpScreenState" {
+  +TextEditingController nameTextEditingController
+  +TextEditingController emailTextEditingController
+  +TextEditingController phoneTextEditingController
+  +TextEditingController passwordTextEditingController
+  +dynamic validateForm()
+  +dynamic saveDriverInfoNow()
+  +Widget build()
+}
+
+"go::authentication::signup_screen.dart::_SignUpScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "go::authentication::signup_screen.dart::_SignUpScreenState"
+
+class "go::infoHandler::app_info.dart::AppInfo" {
+  +Directions? userPickUpLocation
+  +Directions? userDropOffLocation
+  +void updatePickUpLocationAddress()
+  +void updateDropOffLocationAddress()
+}
+
+"go::infoHandler::app_info.dart::AppInfo" o-- "go::models::directions.dart::Directions"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "go::infoHandler::app_info.dart::AppInfo"
+
+class "go::main.dart::MyApp" {
+  +Widget? child
+  {static} +void restartApp()
+  +_MyAppState createState()
+}
+
+"go::main.dart::MyApp" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::main.dart::MyApp"
+
+class "go::main.dart::_MyAppState" {
+  +Key key
+  +void restartApp()
+  +Widget build()
+}
+
+"go::main.dart::_MyAppState" o-- "flutter::src::foundation::key.dart::Key"
+"flutter::src::widgets::framework.dart::State" <|-- "go::main.dart::_MyAppState"
+
+class "go::mainScreens::main_screen.dart::MainScreen" {
+  +_MainScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::mainScreens::main_screen.dart::MainScreen"
+
+class "go::mainScreens::main_screen.dart::_MainScreenState" {
+  -List<Widget> _children
+  +void OnTappedBar()
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "go::mainScreens::main_screen.dart::_MainScreenState"
+"flutter::src::widgets::ticker_provider.dart::SingleTickerProviderStateMixin" <|-- "go::mainScreens::main_screen.dart::_MainScreenState"
+
+class "go::mainScreens::ride_request.dart::RideRequest" {
+  +State<RideRequest> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::mainScreens::ride_request.dart::RideRequest"
+
+class "go::mainScreens::ride_request.dart::_RideRequestState" {
+  +List<Widget> list
+  +bool request
+  +Map<dynamic, dynamic> map
+  +TextEditingController controller
+  +DatabaseReference driverRideRequest
+  +dynamic customerRideRequest()
+  +dynamic refreshList()
+  +void initState()
+  +Widget build()
+}
+
+"go::mainScreens::ride_request.dart::_RideRequestState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"go::mainScreens::ride_request.dart::_RideRequestState" o-- "firebase_database::firebase_database.dart::DatabaseReference"
+"flutter::src::widgets::framework.dart::State" <|-- "go::mainScreens::ride_request.dart::_RideRequestState"
+
+class "go::models::directions.dart::Directions" {
+  +String? humanReadableAddress
+  +String? locationName
+  +String? locationId
+  +double? locationLatitude
+  +double? locationLongitude
+}
+
+class "go::models::direction_details_info.dart::DirectionDetailsInfo" {
+  +int? distance_value
+  +int? duration_value
+  +String? e_points
+  +String? distance_text
+  +String? duration_text
+}
+
+class "go::models::predicted_places.dart::PredictedPlaces" {
+  +String? place_id
+  +String? main_text
+  +String? secondary_text
+}
+
+class "go::models::user_model.dart::UserModel" {
+  +String? phone
+  +String? name
+  +String? id
+  +String? email
+}
+
+class "go::splashScreen::splash_screen.dart::MySplashScreen" {
+  +_MySplashScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::splashScreen::splash_screen.dart::MySplashScreen"
+
+class "go::splashScreen::splash_screen.dart::_MySplashScreenState" {
+  +dynamic startTimer()
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "go::splashScreen::splash_screen.dart::_MySplashScreenState"
+
+class "go::tabPages::earning_tab.dart::EarningsTabPage" {
+  +_EarningsTabPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::tabPages::earning_tab.dart::EarningsTabPage"
+
+class "go::tabPages::earning_tab.dart::_EarningsTabPageState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "go::tabPages::earning_tab.dart::_EarningsTabPageState"
+
+class "go::tabPages::home_tab.dart::HomeTabPage" {
+  +_HomeTabPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::tabPages::home_tab.dart::HomeTabPage"
+
+class "go::tabPages::home_tab.dart::_HomeTabPageState" {
+  +GoogleMapController? newGoogleMapController
+  -Completer<GoogleMapController> _controllerGoogleMap
+  {static} -CameraPosition _kGooglePlex
+  +Position? driverCurrentPosition
+  +Geolocator geoLocator
+  -LocationPermission? _locationPermission
+  +dynamic blackThemeGoogleMap()
+  +dynamic checkIfLocationPermissionAllowed()
+  +dynamic locateDriverPosition()
+  +void initState()
+  +Widget build()
+  +dynamic driverIsOnlineNow()
+  +dynamic updateDriversLocationAtRealTime()
+  +dynamic driverIsOfflineNow()
+}
+
+"go::tabPages::home_tab.dart::_HomeTabPageState" o-- "google_maps_flutter::google_maps_flutter.dart::GoogleMapController"
+"go::tabPages::home_tab.dart::_HomeTabPageState" o-- "dart::async::Completer<GoogleMapController>"
+"go::tabPages::home_tab.dart::_HomeTabPageState" o-- "google_maps_flutter_platform_interface::src::types::camera.dart::CameraPosition"
+"go::tabPages::home_tab.dart::_HomeTabPageState" o-- "geolocator_platform_interface::src::models::position.dart::Position"
+"go::tabPages::home_tab.dart::_HomeTabPageState" o-- "geolocator::geolocator.dart::Geolocator"
+"go::tabPages::home_tab.dart::_HomeTabPageState" o-- "geolocator_platform_interface::src::enums::location_permission.dart::LocationPermission"
+"flutter::src::widgets::framework.dart::State" <|-- "go::tabPages::home_tab.dart::_HomeTabPageState"
+
+class "go::tabPages::profile_tab.dart::ProfileTabPage" {
+  +_ProfileTabPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::tabPages::profile_tab.dart::ProfileTabPage"
+
+class "go::tabPages::profile_tab.dart::_ProfileTabPageState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "go::tabPages::profile_tab.dart::_ProfileTabPageState"
+
+class "go::tabPages::ratings_tab.dart::RatingsTabPage" {
+  +_RatingsTabPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "go::tabPages::ratings_tab.dart::RatingsTabPage"
+
+class "go::tabPages::ratings_tab.dart::_RatingsTabPageState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "go::tabPages::ratings_tab.dart::_RatingsTabPageState"
+
+class "go::widgets::progress_dialog.dart::ProgressDialog" {
+  +String? message
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "go::widgets::progress_dialog.dart::ProgressDialog"
+
+
+@enduml

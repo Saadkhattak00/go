@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "323710065690",
+    "project_id": "godriver-15150",
+    "storage_bucket": "godriver-15150.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323710065690:android:b52770b6dec7a60625c5a3",
+        "android_client_info": {
+          "package_name": "com.go.go"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323710065690-07ei4nqfce58n1tkaf9thgo5rk2g8cvk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeXmy-SunKk8vA3U6dGJA_nw-7KdNnV7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323710065690-07ei4nqfce58n1tkaf9thgo5rk2g8cvk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
